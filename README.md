@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FlexDiagram Web
+
+> **"Code first, Shape later"** — A developer-centric architecture diagramming platform that combines the speed of declarative DSL authoring with the spatial control of free-form visual canvas adjustments.
+
+---
+
+## Key Features
+
+- ⚡ **Closed-Loop Synchronization**: Seamlessly bidirectional. Type DSL on the left, reposition shapes freely on the right. Pinned nodes stay locked when updating code.
+- 📐 **Orthogonal Manhattan Edge Routing**: Obstacle-aware 90-degree right-angle routing around node bodies with automatic parallel lane-shifting.
+- 🧲 **Free-Form Canvas & Alignment Snapping**: Drag-and-drop repositioning with dynamic alignment guides (center-line and border matching).
+- 🎨 **Dark & Light Themes**: Instant switching between dark developer palette and high-contrast white presentation palette with theme-synchronized exports.
+- 📁 **Git-Friendly `.diag` Format**: Pure logic DSL at the top, deterministically sorted JSON metadata comment block at the bottom (`// @layout:v1`).
+- 📤 **Publication-Ready Exports**: Vector SVG, high-resolution PNG (1x, 2x Retina, 3x Presentation), and printable vector PDF.
+- 📑 **Template Library**: Built-in templates for Microservices Flow, Kafka Stream Pipeline, Logic Decision Flow, and PlantUML Compatibility.
+- ⌨️ **Full Keyboard Shortcuts**: <kbd>Ctrl+Z</kbd> / <kbd>Cmd+Z</kbd> Undo, <kbd>Ctrl+Shift+Z</kbd> / <kbd>Cmd+Shift+Z</kbd> Redo, <kbd>Ctrl+S</kbd> Save, <kbd>H</kbd> Pan mode, <kbd>V</kbd> Select mode, and <kbd>Space</kbd> Fast Pan.
+
+---
 
 ## Getting Started
 
-First, run the development server:
+### Development
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Quality Checks & Testing
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+# Type check TypeScript
+npm run typecheck
 
-## Learn More
+# Lint with ESLint
+npm run lint
 
-To learn more about Next.js, take a look at the following resources:
+# Run all unit and integration test suites
+npm test
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Production build
+npm run build
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## DSL Quick Syntax
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```flexdiag
+// Rectangle Node
+[Client App]
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+// Cylinder / Database Node
+(PostgreSQL DB)
+
+// Diamond Decision Node
+<Rate Limit Exceeded?>
+
+// Connectors & Styles
+[Client] -> [Gateway] : HTTPS Request           // Solid directed arrow with label
+[Gateway] ..> (Cache) : Cache Miss (SQL)         // Dotted arrow
+[Gateway] -.-> [Worker] : Event Stream           // Dashed arrow
+[Service A] <-> [Service B] : Mutual Sync        // Bidirectional arrow
+```
+
+---
+
+## Architecture
+
+See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) and [docs/SPECIFICATION.md](docs/SPECIFICATION.md) for full system design, grammar specifications, and requirements.
